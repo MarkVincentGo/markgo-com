@@ -1,0 +1,76 @@
+$taskbarBaseColor: #D2D1C8;
+
+.taskbarContainer {
+  background-color: $taskbarBaseColor;
+  height: 44px;
+  border-top: 2px solid $taskbarBaseColor;
+  padding: 0;
+
+  .taskbarDepthDecorator1 {
+    height: 2px;
+    width: 100%;
+    background-color: white; 
+  }
+
+  
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    height: 42px;   
+    
+    @mixin button($topLeft, $bottomRight) {
+        box-sizing: border-box;
+        border-radius: 0;
+
+        border-top: 2px solid $topLeft;
+        border-left: 2px solid $topLeft;
+        border-right: 2px solid $bottomRight;
+        border-bottom: 2px solid $bottomRight;
+        
+        margin-left: 5px;
+        padding: 0px;
+        
+        width: 85px;
+        height: 32px;
+  
+        outline:none;
+    }
+
+    @mixin buttonContent($topLeft, $bottomRight, $background) {
+      background-color: $background;
+        
+      border-top: 2px solid $topLeft;
+      border-left: 2px solid $topLeft;
+      border-right: 2px solid $bottomRight;
+      border-bottom: 2px solid $bottomRight;
+      
+      font-size: 12px;
+      letter-spacing: 1px;
+      
+      height: calc(100% - 4px);
+      width: calc(100% - 4px);
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .startButtonContainer {
+      @include button(white, black);
+      
+      .startButtonContent {
+        @include buttonContent($taskbarBaseColor, #808080, $taskbarBaseColor)
+      }
+    }
+
+    .startButtonContainerClicked {
+      @include button(#41413F, white);
+
+      .startButtonContentClicked {
+        @include buttonContent(#808080, $taskbarBaseColor, $taskbarBaseColor)
+      }
+    }
+  }
+}
