@@ -1,0 +1,148 @@
+$taskbarBaseColor: #D2D1C8;
+
+@mixin depthEffect ($topLeft, $bottomRight) {
+  border-top: 2px solid $topLeft;
+  border-left: 2px solid $topLeft;
+  border-right: 2px solid $bottomRight;
+  border-bottom: 2px solid $bottomRight;
+}
+
+
+  @mixin button($topLeft, $bottomRight) {
+      box-sizing: border-box;
+      border-radius: 0;
+
+      @include depthEffect($topLeft, $bottomRight);
+      
+      padding: 0px;
+      
+      width: 85px;
+      height: 32px;
+
+      &:focus {
+        outline: 1px dotted black;
+      }
+  }
+
+@mixin buttonContent($topLeft, $bottomRight, $background) {
+  background-color: $background;
+    
+  @include depthEffect($topLeft, $bottomRight);
+  
+  font-size: 12px;
+  letter-spacing: 1px;
+  
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.startButtonContainer {
+  @include button(white, black);
+  margin-left: 5px;
+  
+  .startButtonContent {
+    @include buttonContent($taskbarBaseColor, #808080, $taskbarBaseColor)
+  }
+}
+
+.startButtonContainerClicked {
+  @include button(#41413F, white);
+  margin-left: 5px;
+
+  .startButtonContentClicked {
+    @include buttonContent(#808080, $taskbarBaseColor, $taskbarBaseColor)
+  }
+}
+
+.startMenuContainer {
+  height: 60vh;
+  width: 350px;
+  background-color: $taskbarBaseColor;
+
+  position: absolute;
+  z-index: 10;
+  bottom: 40px;
+  left: 5px;
+
+  @include depthEffect($taskbarBaseColor, #41413F);
+
+  .startMenuContent {
+    box-sizing: border-box;
+    @include depthEffect(white, #808080);
+    height: calc(100%);
+    width: calc(100%);
+
+    padding: 1px;
+
+    display: flex;
+    flex-direction: row;
+
+
+    .sideBar {
+      box-sizing: border-box;
+      width: 30px;
+      height: calc(100% - 4px);
+
+      background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 67%, rgba(20,0,251,1) 100%);
+      writing-mode: vertical-rl;
+      text-orientation: sideways;
+
+      padding-right: 3px;
+      padding-bottom: 5px;
+
+      .sideBarText {
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+
+        transform: rotate(180deg);
+      }
+    }
+
+    .optionList {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 30px);
+
+      .optionItem {
+        height: 60px;
+        width: 100%;
+        background-color: $taskbarBaseColor;
+        border: none;
+        
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        color: black;
+
+
+        &:hover {
+          color: white;
+          background-color: #08246C;
+        }
+
+        &:focus {
+          color: white;
+          background-color: #08246C;
+          outline: 1px dotted black;
+        }
+
+        .optionIcon {
+          height: 50px;
+          width: 50px;
+          border: 1px solid black;
+        }
+
+        .optionText {
+          margin-left: 10px;
+          font-family: "MyFontNormal", sans-serif;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

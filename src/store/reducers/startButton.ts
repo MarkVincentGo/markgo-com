@@ -1,13 +1,31 @@
-export default (state: any = {clicked: false}, action: any) => {
-  switch (action.type) {
-    case 'CLICK_START':
-      return {
-        ...state,
-        clicked: state ? !state.clicked : false
-      }
-      default:
-        return {...state}
-  }
-  return state
+import * as actionTypes from '../actionTypes';
+
+interface IStartButtonClicked {
+  clicked: boolean;
 }
 
+export type IStartButtonState = {
+  clicked: boolean;
+}
+
+type StartButtonAction = {
+  type: string;
+  payload: IStartButtonClicked;
+}
+
+const initialState = {
+  clicked: false,
+};
+
+export default (state: IStartButtonState = initialState, action: StartButtonAction) => {
+  switch (action.type) {
+    case actionTypes.CLICK_START:
+      return {
+        ...state,
+        clicked: action.payload.clicked,
+      };
+
+    default:
+      return state;
+  }
+};

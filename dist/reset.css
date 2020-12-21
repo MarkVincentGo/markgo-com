@@ -3,8 +3,13 @@
 /* Document
    ========================================================================== */
    @font-face {
-    font-family: 'MyFont';
-    src: local('MyFont'), url(./fonts/PIXEAB__.ttf) format('truetype');
+    font-family: 'MyFontBold';
+    src: local('MyFontBold'), url(./fonts/PIXEAB__.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'MyFontNormal';
+    src: local('MyFontNormal'), url(./fonts/PIXEARG_.ttf) format('truetype');
   }
   
 
@@ -16,7 +21,7 @@
  html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
-  font-family: "MyFont", sans-serif;
+  font-family: "MyFontBold", "MyFontNormal", sans-serif;
 }
 
 /* Sections
@@ -193,6 +198,10 @@ input { /* 1 */
 button,
 select { /* 1 */
   text-transform: none;
+}
+
+button:active:focus {
+    outline: none;
 }
 
 /**

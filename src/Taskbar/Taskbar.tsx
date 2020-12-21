@@ -1,39 +1,44 @@
-import React, {FunctionComponent} from 'react';
-import styles from "./Taskbar.module.scss";
+import React, { FunctionComponent, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import cx from 'classnames';
 
-import { toggleStart } from '../store/actions'
+import styles from './Taskbar.module.scss';
 
+import { toggleStart } from '../store/actions/toggleStart';
+import StartButton, { StartMenu } from '../StartButton/StartButton';
+import { RootState } from '../store/RootStateType';
+import TextIconButton from '../Buttons/TextIconButton';
 
+const Divider: FunctionComponent = () => (
+  <>
+    <div className={styles.divider} />
+  </>
+);
 
 interface TaskbarProps {
   currentWindows?: JSX.Element | JSX.Element[] | string
 }
 
-const StartButton: FunctionComponent<any> = () => {
-  const clicked = useSelector((state: any) => state.startButton.clicked);
-  const dispatch = useDispatch();
+const Taskbar: FunctionComponent<TaskbarProps> = () => {
+  const state = useSelector((current: RootState) => current);
+  const startButtonClicked = state.startButton.clicked;
+  const { windowsOpen } = state.windows;
 
-
-  return (
-    <button
-      className={clicked ? styles.startButtonContainerClicked : styles.startButtonContainer}
-      onClick={() => dispatch({type: 'CLICK_START'})}
-    >
-      <div className={clicked ? styles.startButtonContentClicked : styles.startButtonContent}>Start</div>
-    </button>
-    )
-}
-
-const Taskbar: FunctionComponent<TaskbarProps> = ({currentWindows}) => {
-  const hi = "hi";
   return (
     <div className={styles.taskbarContainer}>
-      <div className={styles.taskbarDepthDecorator1}/>
+      <div className={styles.taskbarDepthDecorator1} />
 
       <div className={styles.buttons}>
         <StartButton />
+        <Divider />
+        <div className={styles.taskbarWindows}>
+          {windowsOpen.map((window: any) => (
+            <TextIconButton onClick={() => {}} icon="" text={window} depressable />
+          ))}
+        </div>
       </div>
+      {/* Start Menu */}
+      { startButtonClicked && <StartMenu /> }
     </div>
   );
 };

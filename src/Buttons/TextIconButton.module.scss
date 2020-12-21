@@ -1,0 +1,75 @@
+$baseColor: #D2D1C8;
+
+
+@mixin depthEffect ($topLeft, $bottomRight) {
+  border-top: 2px solid $topLeft;
+  border-left: 2px solid $topLeft;
+  border-right: 2px solid $bottomRight;
+  border-bottom: 2px solid $bottomRight;
+}
+
+.buttonContainer {
+  width: 150px;
+  height: 32px;
+  @include depthEffect(white, #41413F);
+  outline: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 5px;
+  
+  &:active {
+    @include depthEffect(#41413F, white);
+  }
+
+  &:focus {
+    outline: 1px dotted black;
+  }
+  
+  .buttonInnerBorder {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: $baseColor;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "MyFontNormal", sans-serif;
+
+    @include depthEffect($baseColor, #808080);
+
+    &:active {
+      @include depthEffect(#808080, $baseColor);
+    };
+  }
+}
+
+
+.buttonContainerActive {
+  width: 150px;
+  height: 32px;
+  @include depthEffect(#41413F, white);
+  outline: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 5px;
+
+  &:focus {
+    outline: 1px dotted black;
+  }
+  
+  .buttonInnerBorder {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: $baseColor;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include depthEffect(#808080, $baseColor);
+  
+  }
+}

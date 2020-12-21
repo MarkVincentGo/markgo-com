@@ -1,0 +1,54 @@
+$baseColor: #D2D1C8;
+
+
+@mixin depthEffect ($topLeft, $bottomRight) {
+  border-top: 2px solid $topLeft;
+  border-left: 2px solid $topLeft;
+  border-right: 2px solid $bottomRight;
+  border-bottom: 2px solid $bottomRight;
+}
+
+.windowContainer {
+  background-color: white;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  z-index: 5;
+
+  @include depthEffect($baseColor, #41413F);
+
+  .windowInnerBorder {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: $baseColor;
+    padding: 2px;
+
+    @include depthEffect(white, #808080);
+
+    .windowTopbar {
+      box-sizing: border-box;
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(90deg, rgba(10,36,106,1) 0%, rgba(9,9,121,1) 25%, rgba(166,202,241,1) 100%);
+      padding: 0 10px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .windowTitle {
+        font-family: "MyFontNormal", sans-serif;
+        font-size: 14px;
+        color: white;
+      }
+
+      .topbarButtons {
+        height: 19px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
