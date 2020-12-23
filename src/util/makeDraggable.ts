@@ -8,7 +8,6 @@ export const makeDraggable = (component: Element) => {
     .subject(() => ({ x: translateX, y: translateY }))
     .on('drag', function() {
       const { event } = d3 as any;
-      console.log(event.sourceEvent);
       const me = d3.select(this);
       translateX = event.x;
       translateY = event.y;
@@ -28,7 +27,6 @@ export const makeWindowDraggable = (parent: Element, topbar: Element, callback?:
     .subject(() => ({ x: translateX, y: translateY }))
     .on('start', () => {
       const { event } = d3 as any;
-      console.log(event);
       if ((event.sourceEvent.target === topbar)
       || (event.sourceEvent.target === topbar.children[0])) {
         topbarSelected = true;
