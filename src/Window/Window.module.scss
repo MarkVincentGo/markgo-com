@@ -8,6 +8,10 @@ $baseColor: #D2D1C8;
   border-bottom: 2px solid $bottomRight;
 }
 
+.windowClosed {
+  visibility: hidden;
+}
+
 .windowContainer {
   background-color: white;
   height: 300px;
@@ -37,6 +41,7 @@ $baseColor: #D2D1C8;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 2px;
 
       .windowTitle {
         font-family: "MyFontNormal", sans-serif;
@@ -49,6 +54,23 @@ $baseColor: #D2D1C8;
         display: flex;
         justify-content: center;
       }
+    }
+  }
+
+  .contentOuter {
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100% - 26px);
+    background-color: white;
+
+    @include depthEffect(#808080, white);
+
+    .contentInner {
+      box-sizing:  border-box;
+      height: 100%;
+      width: 100%;
+
+      @include depthEffect(#404040,  $baseColor);
     }
   }
 }

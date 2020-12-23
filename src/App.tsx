@@ -7,6 +7,7 @@ import Background from './Background/Background';
 import Taskbar from './Taskbar/Taskbar';
 import Window from './Window/Window';
 import { RootState } from './store/RootStateType';
+import { IWindow } from './store/reducers/window';
 
 const App: FunctionComponent = () => {
   const windows = useSelector((state: RootState) => state.windows.windowsOpen);
@@ -16,8 +17,8 @@ const App: FunctionComponent = () => {
       <Background />
       <Taskbar />
       {/* DISPLAY ALL WINDOWS */}
-      {windows.map((window: any, i: number) => (
-        <Window title={window} key={i.toString()} />
+      {windows.map((window: IWindow, i: number) => (
+        <Window windowInfo={window} key={i.toString()} />
       ))}
     </div>
   );

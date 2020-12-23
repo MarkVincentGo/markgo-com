@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './StartButton.module.scss';
 
-import { addWindow, toggleStart } from '../store/actions/toggleStart';
+import { addWindow, toggleStart } from '../store/actions/actions';
 
 const StartButton: FunctionComponent<any> = () => {
   const clicked = useSelector((state: any) => state.startButton.clicked);
@@ -32,11 +32,11 @@ export const StartMenu: FunctionComponent = () => {
   const windowsOpen = useSelector((state: any) => state.windows.windowsOpen);
   const dispatch = useDispatch();
 
-  const list = ['Resume', 'Project 1', 'Project2', 'Project3', 'Contact Me', 'About This Page', 'Switch to Mac'];
+  const list = ['Resume', 'Projects', 'Contact Me', 'About This Page', 'Switch to Mac'];
 
   const handleOptionClick = useCallback(
     (newWindow: string) => {
-      dispatch(addWindow([...windowsOpen, newWindow]));
+      dispatch(addWindow(newWindow));
       dispatch(toggleStart(false));
     },
     [dispatch],

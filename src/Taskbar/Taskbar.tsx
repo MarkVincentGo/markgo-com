@@ -4,10 +4,11 @@ import cx from 'classnames';
 
 import styles from './Taskbar.module.scss';
 
-import { toggleStart } from '../store/actions/toggleStart';
+import { toggleStart } from '../store/actions/actions';
 import StartButton, { StartMenu } from '../StartButton/StartButton';
 import { RootState } from '../store/RootStateType';
 import TextIconButton from '../Buttons/TextIconButton';
+import { IWindow } from '../store/reducers/window';
 
 const Divider: FunctionComponent = () => (
   <>
@@ -32,8 +33,8 @@ const Taskbar: FunctionComponent<TaskbarProps> = () => {
         <StartButton />
         <Divider />
         <div className={styles.taskbarWindows}>
-          {windowsOpen.map((window: any) => (
-            <TextIconButton onClick={() => {}} icon="" text={window} depressable />
+          {windowsOpen.map((window: IWindow, i: number) => (
+            !window.closed && <TextIconButton onClick={() => {}} icon="" text={window.name} depressable key={i.toString()} />
           ))}
         </div>
       </div>
