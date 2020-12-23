@@ -23,22 +23,23 @@ export const TextIconButton: FunctionComponent<ButtonProps> = ({
   };
 
   return (
-  <div>
-    <button
-      onClick={handleClick}
-      type="button"
-      className={
-        depressable
-          ? cx(active ? styles.buttonContainerActive : styles.buttonContainer, className)
-          : cx(styles.buttonContainer, className)
-      }
-    >
-      <div className={styles.buttonInnerBorder}>
-        {icon}
-        {text}
-      </div>
-    </button>
-  </div>
-  );};
+    <div>
+      <button
+        onClick={handleClick}
+        type="button"
+        className={
+          depressable
+            ? cx(active ? styles.buttonContainerActive : styles.buttonContainer, className)
+            : cx(styles.buttonContainer, className)
+        }
+      >
+        <div className={styles.buttonInnerBorder}>
+          {icon}
+          {text}
+        </div>
+      </button>
+    </div>
+  );
+};
 
 export default TextIconButton;

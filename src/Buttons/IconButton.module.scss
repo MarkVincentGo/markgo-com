@@ -15,6 +15,7 @@ $baseColor: #D2D1C8;
   outline: none;
   padding: 0;
   margin: 0;
+  margin-right: 3px;
   
   &:active {
     @include depthEffect(#41413F, white);

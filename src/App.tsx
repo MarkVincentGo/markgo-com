@@ -16,8 +16,8 @@ const App: FunctionComponent = () => {
       <Background />
       <Taskbar />
       {/* DISPLAY ALL WINDOWS */}
-      {windows.map((window: any) => (
-        <Window />
+      {windows.map((window: any, i: number) => (
+        <Window title={window} key={i.toString()} />
       ))}
     </div>
   );
