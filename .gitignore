@@ -1,4 +1,5 @@
 .idea/
+dist/bundle.js
 .vscode/
 node_modules/
 build
