@@ -17,6 +17,10 @@ interface WindowProps {
 
 const Window: FunctionComponent<WindowProps> = ({ windowInfo }): JSX.Element => {
   const dragRef = useRef(null);
+  const TLResizeRef = useRef(null);
+  const TRResizeRef = useRef(null);
+  const BLResizeRef = useRef(null);
+  const BRResizeRef = useRef(null);
   const dispatch = useDispatch();
   const { id, name, closed } = windowInfo;
   const { size, content } = (windowOps as {[key: string]: any})[name].data;
@@ -30,7 +34,13 @@ const Window: FunctionComponent<WindowProps> = ({ windowInfo }): JSX.Element => 
   useEffect(() => {
     // makeDraggable(dragRef.current);
     makeWindowDraggable(dragRef.current,
-      dragRef.current.querySelector(`.${styles.windowTopbar}`));
+      dragRef.current.querySelector(`.${styles.windowTopbar}`),
+      {
+        TL: TLResizeRef.current,
+        BL: BLResizeRef.current,
+        TR: TRResizeRef.current,
+        BR: BRResizeRef.current,
+      });
   }, []);
 
   return (
@@ -54,6 +64,10 @@ const Window: FunctionComponent<WindowProps> = ({ windowInfo }): JSX.Element => 
           </div>
         </div>
       </div>
+      <div className={styles.topLeftResizer} ref={TLResizeRef} />
+      <div className={styles.topRightResizer} ref={TRResizeRef} />
+      <div className={styles.botLeftResizer} ref={BLResizeRef} />
+      <div className={styles.botRightResizer} ref={BRResizeRef} />
     </div>
   );
 };

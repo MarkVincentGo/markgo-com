@@ -16,6 +16,8 @@ $baseColor: #D2D1C8;
   background-color: white;
   height: 300px;
   width: 300px;
+  min-width: 180px;
+  min-height: 180px;
   position: absolute;
   top: calc(100% / 3);
   left: calc(100% / 3);
@@ -72,5 +74,43 @@ $baseColor: #D2D1C8;
 
       @include depthEffect(#404040,  $baseColor);
     }
+  }
+
+  @mixin resizer {
+    height: 4px;
+    width: 4px;
+    position: absolute;
+    z-index: 10;
+    background-color: white
+  }
+  
+  .topLeftResizer {
+    @include resizer();
+    top: 0;
+    left: -1px;
+    cursor: nwse-resize;
+  }
+
+  .topRightResizer {
+    @include resizer();
+    top: 0;
+    right: 0;
+    cursor: nesw-resize;
+
+  }
+
+  .botLeftResizer {
+    @include resizer();
+    bottom: 0;
+    left: -1px;
+    cursor: nesw-resize;
+
+  }
+
+  .botRightResizer {
+    @include resizer();
+    bottom:0;
+    right: 0;
+    cursor: nwse-resize;
   }
 }

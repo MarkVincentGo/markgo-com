@@ -8,7 +8,15 @@ export default {
         height: '80vh',
         width: '62vh',
       },
-      content: <embed src="Mark_Go_Resume_1218.pdf" type="application/pdf" width="100%" height="100%" />,
+      content: (
+        <>
+          <div style={{
+            height: 'calc(100% - 42px)', width: 'calc(100% - 16px)', backgroundColor: 'white', position: 'absolute', opacity: 0,
+          }}
+          />
+          <iframe src="Mark_Go_Resume_1218.pdf" width="100%" height="100%" frameBorder="0" title="Resume" />
+        </>
+      ),
     },
   },
   Projects: {
